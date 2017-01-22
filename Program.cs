@@ -17,7 +17,7 @@ namespace CPrinter
             // Allow the user to select a printer.
             // Print the file to the printer.
 
-            PdfiumViewer.PdfDocument pdfDoc = onLoadDocumentFromFile("C:\\Users\\lion\\Desktop\\pdf.pdf");
+            PdfiumViewer.PdfDocument pdfDoc = onLoadDocumentFromFile(args[0]);
             if (pdfDoc == null)
                 return; 
 
@@ -58,7 +58,7 @@ namespace CPrinter
                 return PdfiumViewer.PdfDocument.Load(pathFile);
             } catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error path", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
