@@ -17,7 +17,7 @@ namespace CPrinter
             // Allow the user to select a printer.
             // Print the file to the printer.
 
-            PdfiumViewer.PdfDocument pdfDoc = onLoadDocumentFromFile(args[0]);
+            PdfiumViewer.PdfDocument pdfDoc = onLoadDocumentFromFile("C:\\Users\\lion\\Desktop\\pdf.pdf");
             if (pdfDoc == null)
                 return; 
 
@@ -37,12 +37,13 @@ namespace CPrinter
             {
                 PrintDocument printDoc = pdfDoc.CreatePrintDocument();
 
-                printDoc.DefaultPageSettings.PaperSize = printDialog.PrinterSettings.DefaultPageSettings.PaperSize;
-                printDoc.DefaultPageSettings.PrinterSettings.PrinterName = printDialog.PrinterSettings.PrinterName;
-                printDoc.DefaultPageSettings.PrinterSettings.FromPage = printDialog.PrinterSettings.FromPage;
-                printDoc.DefaultPageSettings.PrinterSettings.ToPage = printDialog.PrinterSettings.ToPage;
+                printDoc.PrinterSettings = printDialog.PrinterSettings;
 
-                printDoc.DefaultPageSettings.PrinterSettings = printDialog.PrinterSettings.DefaultPageSettings.PrinterSettings;
+                printDoc.DefaultPageSettings.PaperSize = printDialog.PrinterSettings.DefaultPageSettings.PaperSize;
+                printDoc.DefaultPageSettings.PrinterResolution = printDialog.PrinterSettings.DefaultPageSettings.PrinterResolution;
+                printDoc.DefaultPageSettings.Margins = printDialog.PrinterSettings.DefaultPageSettings.Margins;
+                printDoc.DefaultPageSettings.Landscape = printDialog.PrinterSettings.DefaultPageSettings.Landscape;
+                printDoc.DefaultPageSettings.Color = printDialog.PrinterSettings.DefaultPageSettings.Color;
 
                 printDialog.Document = printDoc;
                 printDoc.Print();
